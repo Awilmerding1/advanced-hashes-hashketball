@@ -1,4 +1,4 @@
-# Write your code here!
+require 'pry'
 def game_hash
 
 hash = {home: {
@@ -106,7 +106,13 @@ hash = {home: {
           }
         }
       }
+end
 
 
-
+def num_points_scored(name)
+  if game_hash[:home][:players].keys.include?(name)
+    return game_hash[:home][:players][name][:points]
+  else
+    return game_hash[:away][:players][name][:points]
+  end
 end
