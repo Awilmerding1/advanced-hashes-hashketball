@@ -148,3 +148,29 @@ def player_numbers(name)
       end
     end
 end
+
+def player_stats(name)
+  if game_hash[:home][:players].keys.include?(name)
+    return game_hash[:home][:players][name]
+  else
+    return game_hash[:away][:players][name]
+  end
+end
+
+def big_shoe_rebounds
+   size = 0
+   rebounds = 0
+   game_hash.each do |team, team_data|
+     team_data.each do |key, value|
+       if key == :players
+         value.each do |x, v|
+           if v[:shoe] > size
+             size = v[:shoe]
+             rebounds = v[:rebounds]
+           end
+         end
+       end
+     end
+   end
+   return rebounds
+end
